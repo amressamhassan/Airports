@@ -1,4 +1,0 @@
-if you press ticket and press book this is window you will get
-first input is the type of  ticket
-second input is the way of payement
-third input you will enter information about payement
