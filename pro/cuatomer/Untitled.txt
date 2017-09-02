@@ -1,0 +1,6 @@
+user login into site first
+press User Panel
+you will get your info
+press show all ticket to find aal ticket which you want to book
+press show active ticket to show all tickets which active by manager
+pess book ticket to book a flight

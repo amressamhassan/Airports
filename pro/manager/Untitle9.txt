@@ -1,0 +1,5 @@
+this is about add flight
+add place
+add depart date
+add depart time
+add number of seats

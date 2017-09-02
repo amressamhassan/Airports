@@ -1,0 +1,161 @@
+<?php include 'include/header.php'; ?>
+<?php require_once('classes/Manager.php'); ?>
+<?php require_once('classes/database.php'); ?>
+<div class="container">
+    <?php
+    $checkadmin = true;
+    
+    if ($_SESSION['manager_type'] == 2) {
+//        echo $_SESSION['manager_type'];
+        $checkadmin=false;
+    }
+    $id = $_GET['ty'];
+    $manager = new Manager();
+    $db = new Db();
+    $sql = $manager->ShowManager($db);
+    while ($row = mysqli_fetch_assoc($sql)) {
+        if ($row["User_ID"] == $id) {
+            $fname = $row["Fname"];
+            $mname = $row["Mname"];
+            $lname = $row["Lname"];
+            $phone = $row["Phone"];
+            $email = $row["Email"];
+            $pass = $row["Password"];
+            // $i=$row["Gender"];
+            $tele = $row["Telephone"];
+            $street = $row["Street_name"];
+            $city = $row["City"];
+            $i = $row["id_type"];
+            $country = $row["Country"];
+            $wages = $row["wages"];
+            ?>
+            <form action='' method='post' >
+                <table class='table'>
+                    <tbody><tr>
+                            <td>Firstname</td>
+                            <td><div class='input-group input'>
+                                    <input class='form-control' placeholder='Username' required='' type='text' name='fname' value=<?php echo $fname; ?>>
+                                </div></td>
+                        </tr>
+                        <tr>
+                            <td>Middlename</td>
+                            <td><div class='input-group input'>
+                                    <input class='form-control' placeholder='Username' required='' type='text' name='mname' value=<?php echo $mname; ?>>
+                                </div></td>
+                        </tr>
+                        <tr>
+                            <td>Lastname</td>
+                            <td><div class='input-group input'>
+                                    <input class='form-control' placeholder='Username' required='' type='text' name='lname' value=<?php echo $lname; ?>>
+                                </div></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><div class='input-group input'>
+                                    <input class='form-control' placeholder='Username' required='' type='text' name='email' value=<?php echo $email; ?>>
+                                </div></td>
+                        </tr>
+                        <tr>
+                            <?php /*    <td>password</td>
+                              <td><div class='input-group input'>
+                              <input class='form-control' placeholder='Username' required='' type='text' name='pass' value=<?php echo $pass;?>>
+                              </div></td>
+                              </tr>
+                              <tr>
+                              <td>confirm password</td>
+                              <td><div class='input-group input'>
+                              <input class='form-control' placeholder='Username' required='' type='text' name='confirmpass' value=<?php echo $pass;?>>
+                              </div></td>
+                              </tr> */ ?>
+                        <tr>
+                            <td>Phone</td>
+                            <td><div class='input-group input'>
+                                    <input class='form-control' placeholder='Username' required='' type='text' name='phone' value=<?php echo $phone; ?>>
+                                </div></td>
+                        </tr>
+                        <tr>
+                            <td>Telephone</td>
+                            <td><div class='input-group input'>
+                                    <input class='form-control' placeholder='Username' required='' type='text' name='telephone' value=<?php echo $tele; ?>>
+                                </div></td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td><div class='input-group input'>
+                                    <table><tr>
+                                            <td>Male</td><td><input class='radio' name='gender' value='1' type='radio'/></td> </tr>
+                                        <tr>
+                                            <td>Female</td><td><input class='radio' name='gender' value='0' type='radio'/></td> </tr>
+                                    </table>
+                                </div></td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td><div class='input-group input'>
+                                    <div class='col-md-6'><input class='form-control col-md-3' placeholder='Street and building and apartment number' required='' type='text' name='streetname' value=<?php echo $street; ?>></div>
+                                    <div class='col-md-3'><input class='form-control col-md-3' placeholder='City' required='' type='text' name='city' value=<?php echo $city; ?>></div>
+                                    <div class='col-md-3'><input class='form-control col-md-3' placeholder='Country' required='' type='text' name='country' value=<?php echo $country; ?>></div>
+                                </div></td>
+                            </tr.
+                        <tr>
+                            <td>Wages</td>
+                            <td><div class='input-group input'>
+                                    <input class='form-control' placeholder='Username' required='' type='text' name='wages' value=<?php echo $wages; ?>>
+                                </div></td>
+                        </tr>
+                            <?php if($checkadmin==true){  ?>
+                        <tr>
+                            <td>Type</td>
+                            <td><div class='input-group input'>
+                                    <table><tr>
+                                            <td>Admin</td><td><input class='radio' name='typemanager' value='1' type='radio'/></td> </tr>
+                                        <tr>
+                                            <td>Manager</td><td><input class='radio' name='typemanager' value='0' type='radio'/></td> </tr>
+                                    </table>
+                                </div></td>
+                            </tr><?php } ?>
+                        <tr>
+                    <div class='col-md-2'>
+                        <td><input class='btn btn-info btn-block' name='submit' value='Update' type='submit'></td>
+                    </div>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+            <?php
+            //<a class="btn btn-info" href="UpdateAirport.php?id='.$row["id"].'">Update</a></td>
+            //<a href="RegisterUser.php?ty=passenger" class="btn btn-default btn-block">Add</a>
+        }
+    }
+
+
+    if (isset($_POST["submit"])) {
+        $fname = $_POST['fname'];
+        $mname = $_POST['mname'];
+        $lname = $_POST['lname'];
+        // $pass=$_POST['pass'];
+        //$conpassword=$_POST['confirmpass'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $gender = $_POST['gender'];
+        $telephone = $_POST['telephone'];
+        $city = $_POST['city'];
+        $country = $_POST['country'];
+        $streetname = $_POST['streetname'];
+        // $i=$_POST['typemanager'];
+        $wage = $_POST['wages'];
+        $manager = new Manager();
+        $db = new Db();
+//        echo "aaaa";
+        if ($manager->updateManager($db, $id, $fname, $mname, $lname, $email, $phone, $telephone, $gender, $pass, $streetname, $city, $country, $wage, $i)) {
+            $message = "Successful";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            if($checkadmin){
+            echo "<meta http-equiv='Refresh' content='0;URL=AdminPanel.php'/>";}else{
+            echo "<meta http-equiv='Refresh' content='0;URL=ManagerPanel.php'/>";}
+        } else {
+            $message = "failed";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+    }
+    ?>

@@ -1,0 +1,7 @@
+{
+  "name" : "SWE2",
+  "repositories" : [ {
+    "type" : "composer",
+    "url" : "https://packagist.org/"
+  } ]
+}

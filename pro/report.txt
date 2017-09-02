@@ -1,0 +1,5 @@
+the first chart is display revenue this year in dollar
+the blow of first is display user rating distribution
+the bolw of sechond is anothe statics
+the forth chart display top 5 vistors countries
+the fifth is most used airplanes
